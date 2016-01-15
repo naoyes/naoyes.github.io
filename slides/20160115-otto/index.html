@@ -1,0 +1,1153 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Otto トライアル</title>
+  <style type="text/css">
+    /* Color Palette Based on Monokai
+
+white       : #fafafa
+light grey  : #efefef
+grey        : #75715e
+dark grey   : #272822
+black       : #191919
+
+light blue  : #66d9ef
+blue        : #1db4d0
+lavender    : #bf79db
+magenta     : #f92672
+light green : #a6e22e
+*/
+
+/* Local Fonts */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/opensans/300.woff2') format('woff2'),
+       url('fonts/opensans/300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/opensans/400.woff2') format('woff2'),
+       url('fonts/opensans/400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/opensans/600.woff2') format('woff2'),
+       url('fonts/opensans/600.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/opensans/700.woff2') format('woff2'),
+       url('fonts/opensans/700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('fonts/opensans/800.woff2') format('woff2'),
+       url('fonts/opensans/800.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: url('fonts/opensans/300i.woff2') format('woff2'),
+       url('fonts/opensans/300i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/opensans/400i.woff2') format('woff2'),
+       url('fonts/opensans/400i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: url('fonts/opensans/600i.woff2') format('woff2'),
+       url('fonts/opensans/600i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('fonts/opensans/700i.woff2') format('woff2'),
+       url('fonts/opensans/700i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 800;
+  src: url('fonts/opensans/800i.woff2') format('woff2'),
+       url('fonts/opensans/800i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/merriweather/400.woff2') format('woff2'),
+       url('fonts/merriweather/400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/merriweather/700.woff2') format('woff2'),
+       url('fonts/merriweather/700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 900;
+  src: url('fonts/merriweather/900.woff2') format('woff2'),
+       url('fonts/merriweather/900.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/merriweather/400i.woff2') format('woff2'),
+       url('fonts/merriweather/400i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 700;
+  src: url('fonts/merriweather/700i.woff2') format('woff2'),
+       url('fonts/merriweather/700i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 900;
+  src: url('fonts/merriweather/900i.woff2') format('woff2'),
+       url('fonts/merriweather/900i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/fira/400.woff2') format('woff2'),
+       url('fonts/fira/400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/fira/500.woff2') format('woff2'),
+       url('fonts/fira/500.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/fira/700.woff2') format('woff2'),
+       url('fonts/fira/700.woff') format('woff');
+}
+
+/* Theme Styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+  color: #191919;
+  background-color: #fafafa;
+}
+
+/* Custom Slide Styles */
+#slide-1 {
+  color: #fafafa;
+  background: #222 url('fade.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+#slide-1 h1 {
+  text-shadow: 1px 2px 4px #191919;
+}
+
+#slide-1 p {
+  text-shadow: 1px 1px 1px #191919;
+}
+
+.center {
+  text-align: center;
+}
+
+img.badge {
+  height: 128px;
+  width: 128px !important;
+  border-radius: 50% !important;
+}
+
+/* Presentation Styles */
+.slide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 100px;
+}
+
+.slide-content {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 200%;
+  font-weight: 200;
+  line-height: 1.375;
+  overflow: hidden;
+}
+
+.slide-content img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.arrow {
+  float: left;
+  height: 0;
+  width: 0;
+  margin-right: 15px;
+  border: 15px solid #efefef;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-right-width: 25px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-left-width: 0;
+}
+
+.next {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-right-width: 0;
+  border-bottom-color: transparent;
+  border-left-width: 25px;
+}
+
+.prev:hover {
+  border-right-color: #272822;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #272822;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  margin: 170px 0 0;
+  font-size: 300%;
+  text-align: center;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 5px 0;
+  font-size: 100%;
+  font-weight: 200;
+  text-align: center;
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0;
+  padding-bottom: 15px;
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 2px ridge #191919;
+}
+
+ul {
+  font-weight: 200;
+  line-height: 1.375;
+  padding: 20px 0 0 60px;
+}
+
+blockquote {
+  padding-left: 20px;
+  margin-left: 0;
+  background: #efefef;
+  border-left: 5px solid #272822;
+  border-radius: 0 3px 3px 0;
+}
+
+blockquote p {
+  padding: .5em;
+  color: #272822;
+}
+
+.left {
+  float: left;
+  width: 48%;
+}
+
+.right {
+  float: right;
+  width: 48%;
+}
+
+.author h1 {
+  margin-bottom: 30px;
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+}
+
+.author h3 {
+  font-size: 95%;
+  font-weight: 100;
+  text-align: center;
+  border: none;
+}
+
+.author h3.twitter::before {
+  content: 'Twitter: ';
+}
+
+.author h3.github::before {
+  content: 'Github: ';
+}
+
+.author h3.email::before {
+  content: 'Email: ';
+}
+
+.author h3.url::before {
+  content: 'Web: ';
+}
+
+a {
+  text-decoration: none;
+  color: #1db4d0;
+}
+
+a:hover {
+  color: #1db4d0;
+  border-bottom: 1px solid #1db4d0;
+}
+
+hr {
+  border: 1px solid #272822;
+}
+
+pre {
+  font-size: 75%;
+  line-height: 1.3;
+}
+
+table td,
+table th {
+  padding-right: 3em;
+  text-align: left;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  height: 3px;
+  width: 0;
+  background-color: #a6e22e;
+  -webkit-transition: width .15s ease-out;
+     -moz-transition: width .15s ease-out;
+       -o-transition: width .15s ease-out;
+          transition: width .15s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Code Highlighting */
+code {
+  padding: .1em .35em;
+  font-family: 'Fira Mono';
+  color: #fafafa;
+  background-color: #272822;
+  border-radius: 3px;
+}
+
+pre code {
+  display: block;
+  padding: .5em;
+  font-family: 'Fira Mono';
+  font-weight: 400;
+  overflow-y: hidden;
+  background: #272822;
+}
+
+pre .tag,
+pre .tag .title,
+pre .keyword,
+pre .literal,
+pre .change,
+pre .winutils,
+pre .flow,
+pre .lisp .title,
+pre .clojure .built_in,
+pre .nginx .title,
+pre .tex .special {
+  color: #f92672;
+}
+
+pre code {
+  color: #75715e;
+}
+
+pre code .constant {
+  color: #66d9ef;
+}
+
+pre .class .title {
+  color: #fafafa;
+}
+
+pre .attribute,
+pre .symbol,
+pre .symbol .string,
+pre .value,
+pre .regexp {
+  color: #bf79db;
+}
+
+pre .tag .value,
+pre .string,
+pre .subst,
+pre .title,
+pre .haskell .type,
+pre .preprocessor,
+pre .ruby .class .parent,
+pre .built_in,
+pre .sql .aggregate,
+pre .django .template_tag,
+pre .django .variable,
+pre .smalltalk .class,
+pre .javadoc,
+pre .django .filter .argument,
+pre .smalltalk .localvars,
+pre .smalltalk .array,
+pre .attr_selector,
+pre .pseudo,
+pre .addition,
+pre .stream,
+pre .envvar,
+pre .apache .tag,
+pre .apache .cbracket,
+pre .tex .command,
+pre .prompt {
+  color: #a6e22e;
+}
+
+pre .comment,
+pre .java .annotation,
+pre .python .decorator,
+pre .template_comment,
+pre .pi,
+pre .doctype,
+pre .deletion,
+pre .shebang,
+pre .apache .sqbracket,
+pre .tex .formula {
+  color: #75715e;
+}
+
+pre .keyword,
+pre .literal,
+pre .css .id,
+pre .phpdoc,
+pre .title,
+pre .haskell .type,
+pre .vbscript .built_in,
+pre .sql .aggregate,
+pre .rsl .built_in,
+pre .smalltalk .class,
+pre .diff .header,
+pre .chunk,
+pre .winutils,
+pre .bash .variable,
+pre .apache .tag,
+pre .tex .special,
+pre .request,
+pre .status {
+  /* font-weight: 600; */
+}
+
+pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .xml .css,
+pre .xml .cdata {
+  opacity: .5;
+}
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev,
+  .prev:hover {
+    border-right-color: rgba(135, 135, 135, .5);
+  }
+
+  .next,
+  .next:hover {
+    border-left-color: rgba(135, 135, 135, .5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow: hidden;
+    font-size: 50%;
+  }
+
+  .slide-content {
+    height: 340px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+  }
+
+  body {
+    float: none !important;
+    padding: 0;
+    margin: 0 auto !important;
+    overflow: visible;
+    font-size: 52%;
+    background: none !important;
+    border: 0;
+  }
+
+  .progress,
+  .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+    border: 1px solid #222;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h1 id="otto-">Otto トライアル</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h3 id="otto">Otto</h3>
+<p>Vagrantの後継者としてのHashiCorp社の8つめの製品</p>
+<ul>
+<li>Vagrant</li>
+<li>Packer</li>
+<li>Serf</li>
+<li>Consul</li>
+<li>Terraform</li>
+<li>Vault</li>
+<li>Nomad</li>
+<li><a href="https://www.ottoproject.io/">Otto</a>   &lt;= <font color="red">コレ！</font></li>
+<li>Atlas</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h3 id="-">特長は？</h3>
+<p><strong>手軽</strong>に<strong>いい感じ</strong>に開発、インフラ構築、デプロイをしてくれるツール</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="-">特長は？</h3>
+<p><strong>手軽</strong>に<strong>いい感じ</strong>に開発、インフラ構築、デプロイをしてくれるツール</p>
+<h3 id="-">手軽 = 設定ゼロ</h3>
+<p>Ottoのドキュメントには<code>zero configuraion</code>という言葉が<a href="https://www.google.co.jp/search?q=best+practices+site%3Aottoproject.io#q=zero+configuration+site:ottoproject.io">けっこう出てくる</a>。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="-">特長は？</h3>
+<p><strong>手軽</strong>に<strong>いい感じ</strong>に開発、インフラ構築、デプロイをしてくれるツール</p>
+<h3 id="-">手軽 = 設定ゼロ</h3>
+<p>Ottoのドキュメントには<code>zero configuraion</code>という言葉が<a href="https://www.google.co.jp/search?q=best+practices+site%3Aottoproject.io#q=zero+configuration+site:ottoproject.io">けっこう出てくる</a>。</p>
+<h3 id="-">いい感じ = ベスト・プラクティス</h3>
+<p>Ottoのドキュメントには<code>(industory) best practices</code>という言葉が<a href="https://www.google.co.jp/search?q=best+practices+site%3Aottoproject.io">たくさん出てくる</a>。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="-">準備</h3>
+<p>Ottoをインストール</p>
+<pre><code class="lang-sh">$ brew install otto</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h3 id="-">準備</h3>
+<p>Ottoをインストール</p>
+<pre><code class="lang-sh">$ brew install otto
+$ otto -h
+  Available commands are:
+      build      Build the deployable artifact <span class="hljs-keyword">for</span> the app
+      compile    Prepares your project <span class="hljs-keyword">for</span> being run.
+      deploy     Deploy the application
+      dev        Start and manage a development environment
+      infra      Builds the infrastructure <span class="hljs-keyword">for</span> the Appfile
+      status     Status of the stages of this application
+      version    Prints the Otto version</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="-">準備</h3>
+<p>アプリを準備してプロジェクトのルートディレクトリに移動</p>
+<pre><code class="lang-sh">$ symfony new my_project 2.8
+$ <span class="hljs-built_in">cd</span> my_project</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="-">開発</h3>
+<p><code>otto compile</code>で開発、ビルド、デプロイに必要な HashiCorp ツールの各種設定ファイルを作る。この時点でアプリにいい感じの設定が盛り込まれる。</p>
+<pre><code class="lang-sh">$ otto compile
+==&gt; Loading Appfile...
+==&gt; No Appfile found! Detecting project information...
+    No Appfile was found. If there is no Appfile, Otto will <span class="hljs-keyword">do</span> its best
+    to detect the <span class="hljs-built_in">type</span> of application this is and <span class="hljs-built_in">set</span> reasonable defaults.
+    This is a good way to get started with Otto, but over time we recommend
+    writing a real Appfile since this will allow more complex customizations,
+    the ability to reference dependencies, versioning, and more.
+==&gt; Fetching all Appfile dependencies...
+==&gt; Compiling...
+    Application:    my_project (php)
+    Project:        my_project
+    Infrastructure: aws (simple)
+
+    Compiling infra...
+    Compiling foundation: consul
+==&gt; Compiling main application...
+==&gt; Compilation success!
+    This means that Otto is now ready to start a development environment,
+    deploy this application, build the supporting infrastructure, and
+    more. See the <span class="hljs-built_in">help</span> <span class="hljs-keyword">for</span> more information.
+
+    Supporting files to <span class="hljs-built_in">enable</span> Otto to manage your application from
+    development to deployment have been placed <span class="hljs-keyword">in</span> the output directory.
+    These files can be manually inspected to determine what Otto will do.</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="-">開発</h3>
+<p>作成された各種設定ファイルは<code>.otto</code>ディレクトリに入っている。</p>
+<pre><code class="lang-sh">$ tree .otto
+.otto
+├── appfile
+│   ├── Appfile.compiled
+│   └── version
+├── compiled
+│   ├── app
+│   │   ├── build
+│   │   │   ├── build-php.sh
+│   │   │   └── template.json
+│   │   ├── deploy
+│   │   │   └── main.tf
+│   │   ├── dev
+│   │   │   └── Vagrantfile
+│   │   └── foundation-consul
+│   │       ├── app-build
+│   │       │   ├── main.sh
+│   │       │   └── upstart.conf
+│   │       ├── app-deploy
+│   │       │   └── main.sh
+│   │       ├── app-dev
+│   │       │   ├── main.sh
+│   │       │   └── upstart.conf
+│   │       ├── app-dev-dep
+│   │       │   └── main.sh
+│   │       └── deploy
+│   │           ├── main.tf
+│   │           ├── module-aws
+│   │           │   ├── join.sh
+│   │           │   ├── main.tf
+│   │           │   ├── outputs.tf
+│   │           │   └── variables.tf
+│   │           ├── module-aws-simple
+│   │           │   ├── main.tf
+│   │           │   ├── outputs.tf
+│   │           │   ├── setup.sh
+│   │           │   └── variables.tf
+│   │           └── variables.tf
+│   ├── foundation-consul
+│   │   ├── app-build
+│   │   │   ├── main.sh
+│   │   │   └── upstart.conf
+│   │   ├── app-deploy
+│   │   │   └── main.sh
+│   │   ├── app-dev
+│   │   │   ├── main.sh
+│   │   │   └── upstart.conf
+│   │   ├── app-dev-dep
+│   │   │   └── main.sh
+│   │   └── deploy
+│   │       ├── main.tf
+│   │       ├── module-aws
+│   │       │   ├── join.sh
+│   │       │   ├── main.tf
+│   │       │   ├── outputs.tf
+│   │       │   └── variables.tf
+│   │       ├── module-aws-simple
+│   │       │   ├── main.tf
+│   │       │   ├── outputs.tf
+│   │       │   ├── setup.sh
+│   │       │   └── variables.tf
+│   │       └── variables.tf
+│   └── infra-my_project
+│       ├── main.tf
+│       └── outputs.tf
+└── data
+    └── dev_ip
+
+24 directories, 41 files</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="-">開発</h3>
+<p><code>otto dev</code>で開発環境を作る。この際にVagrantがインストールされていなかったらインストールを促される。</p>
+<pre><code class="lang-sh">$ otto dev
+==&gt; Creating <span class="hljs-built_in">local</span> development environment with Vagrant <span class="hljs-keyword">if</span> it doesn<span class="hljs-string">'t exist...
+    Raw Vagrant output will begin streaming in below. Otto does
+    not create this output. It is mirrored directly from Vagrant
+    while the development environment is being created.
+
+Bringing machine '</span>default<span class="hljs-string">' up with '</span>virtualbox<span class="hljs-string">' provider...
+==&gt; default: Importing base box '</span>hashicorp/precise64<span class="hljs-string">'...
+==&gt; default: Matching MAC address for NAT networking...
+ :
+==&gt; Development environment successfully created!
+    IP address: 100.66.169.234
+
+    A development environment has been created for writing a PHP app.
+
+    Edit files locally on your machine, the file changes will be synced
+    to the development environment automatically.
+
+    To run and view your application, run '</span>otto dev ssh<span class="hljs-string">' to enter the
+    development environment. You'</span>ll be placed directly into the working
+    directory <span class="hljs-built_in">where</span> you can run <span class="hljs-string">"composer"</span>, <span class="hljs-string">"php"</span>, etc.
+
+    You can access the environment from this machine using the IP address above.
+    For example, <span class="hljs-keyword">if</span> you start your app with <span class="hljs-string">'php -S 0.0.0.0:5000'</span>, <span class="hljs-keyword">then</span> you can
+    access it using the above IP at port 5000.</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="-">開発</h3>
+<p><code>otto dev ssh</code>で作成されたVagrantのマシンにSSHログインして、Symfonyデモを走らせる</p>
+<pre><code class="lang-sh">$ otto dev ssh
+vagrant@precise64:/vagrant$ app/console server:start 0.0.0.0:8000</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="-">開発</h3>
+<p><code>otto dev address</code>でIPアドレスを調べて</p>
+<pre><code class="lang-sh">$ otto dev address
+100.66.169.234</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="-">開発</h3>
+<p>ブラウザでアクセス</p>
+<div style="text-align:center;">
+  <img src="symfony.png" style="width:50%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="-">インフラ構築</h3>
+<h4 id="-">インフラ</h4>
+<p><code>otto infra</code>でAWSにいい感じにインフラを作ってくれる。この際に Terraform がインストールされていなかったらインストールを促される
+（要AWSアカウント）</p>
+<pre><code class="lang-sh">$ otto infra
+==&gt; Detecting infrastructure credentials <span class="hljs-keyword">for</span>: my_project (aws)
+    Existing infrastructure credentials were not found! Otto will
+    now ask you <span class="hljs-keyword">for</span> infrastructure credentials. These will be encrypted
+    and saved on disk so this doesn<span class="hljs-string">'t need to be repeated.
+
+    IMPORTANT: If you'</span>re re-entering new credentials, make sure the
+    credentials are <span class="hljs-keyword">for</span> the same account, otherwise you may lose
+    access to your existing infrastructure Otto <span class="hljs-built_in">set</span> up.
+
+AWS Access Key
+  AWS access key used <span class="hljs-keyword">for</span> API calls.
+
+  Enter a value: ********************
+
+AWS Secret Key
+  AWS secret key used <span class="hljs-keyword">for</span> API calls.
+
+  Enter a value: ****************************************
+
+SSH Public Key Path
+  Path to an SSH public key that will be granted access to EC2 instances
+
+  Default: ~/.ssh/id_rsa.pub
+  Enter a value: 
+
+Password <span class="hljs-keyword">for</span> Encrypting Credentials
+  This password will be used to encrypt and save the credentials so they
+  don<span class="hljs-string">'t need to be repeated multiple times.
+
+  Enter a value: 
+==&gt; Building main infrastructure...
+Would you like Otto to install Terraform?
+  An older version of terraform was found installed (0.2.1). Otto requires
+  version 0.6.3 or higher. Otto can install the latest version of terraform
+  for you (0.6.9). Would you like Otto to update terraform for you?
+
+  Please enter '</span>yes<span class="hljs-string">' to continue. Any other value will exit.
+
+  Enter a value:</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="-">インフラ構築</h3>
+<h4 id="-">インフラ</h4>
+<p><code>otto</code>という名前でVPCができているのがわかる。</p>
+<div style="text-align:center;">
+  <img src="aws.png" style="width:100%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="-">インフラ構築</h3>
+<h4 id="-">ビルド</h4>
+<p><code>otto build</code>でAMIのマシンイメージを作成する。この際に Packer がインストールされていなかったらインストールを促される。</p>
+<pre><code class="lang-sh">$ otto build</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h3 id="-">インフラ構築</h3>
+<h4 id="-">ビルド</h4>
+<p>しかしここでエラー！</p>
+<pre><code class="lang-sh">$ otto build
+  :
+Build <span class="hljs-string">'otto'</span> errored: Script exited with non-zero <span class="hljs-built_in">exit</span> status: 1
+
+==&gt; Some builds didn<span class="hljs-string">'t complete successfully and had errors:
+Error building app: Error executing Packer: exit status 1
+
+The error messages from Packer are usually very informative.
+Please read it carefully and fix any issues it mentions. If
+the message isn'</span>t clear, please report this to the Otto project.</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="-">インフラ構築</h3>
+<h4 id="-">ビルド</h4>
+<p>しかしここでエラー！手軽にいい感じにできなかったorz。</p>
+<pre><code class="lang-sh">$ otto build
+  :
+Build <span class="hljs-string">'otto'</span> errored: Script exited with non-zero <span class="hljs-built_in">exit</span> status: 1
+
+==&gt; Some builds didn<span class="hljs-string">'t complete successfully and had errors:
+Error building app: Error executing Packer: exit status 1
+
+The error messages from Packer are usually very informative.
+Please read it carefully and fix any issues it mentions. If
+the message isn'</span>t clear, please report this to the Otto project.</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="-">デプロイ（未開の地）</h3>
+<p><code>otto deploy</code>で先ほど作ったAMIをその前に作ったインフラにデプロイする</p>
+<pre><code class="lang-sh">$ otto deploy</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="php">PHP</h3>
+<h4 id="-">どうやって判断してるの？</h4>
+<p><code>*.php</code>, <code>composer.json</code> なファイルがあるかどうか</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="php">PHP</h3>
+<h4 id="-">開発環境</h4>
+<ul>
+<li>PHP - 5.4, 5.5 and 5.6</li>
+<li>Common PHP Modules - mcrypt, mysql, fpm, gd, readline, pgsql</li>
+<li>Composer - PHP dependency management</li>
+<li>Git, Mercurial, Bazaar - Useful for pulling Composer dependencies</li>
+<li>Apache</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="-">雑感</h3>
+<p> 開発者がコーディングに集中できることを念頭に、開発・デプロイフローのフレームワークを提示・体現したHashiCorpらしいポリシーの反映されたツール。  </p>
+<p> カスタムができる範囲は少々。このOtto自体が成長していってVagrant、Terraformらの柔軟なラッパとなるのか、Ottoはあくまでレールとしてそこに乗っかる人だけ使うというものになるのか、どちらの方向性になるのか楽しみ。  </p>
+<p> 現状ではこれをボイラプレートとしてVagrant、Packer、TerraformおよびConsulの各種設定をいじってみることで、各ツールの使い方を探るのに使えるのではないかと思う。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h1 id="-">ありがとうございました</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><div class="author">
+  <h1 class="name">真鍋直泰</h1>
+    <h3 class="url">
+      <a href="https://github.com/naoyes">https://github.com/naoyes</a>
+    </h3>
+</div>
+</section>
+  </div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /* Returns the current page number of the presentation */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+/* Navigates forward n pages (navigate in reverse if n is negative) */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/* Updates the current URL to include a hashtag of the current page number */
+function updateURL() {
+  window.location.hash = currentPosition();
+}
+
+/* Sets the progress indicator */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/* Determines whether or not we are currently in full screen mode */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+  </script>
+</body>
+</html>
