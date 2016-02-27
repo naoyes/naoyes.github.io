@@ -1,0 +1,1509 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Web Components</title>
+  <style type="text/css">
+    /* Color Palette Based on Monokai
+
+white       : #fafafa
+light grey  : #efefef
+grey        : #75715e
+dark grey   : #272822
+black       : #191919
+
+light blue  : #66d9ef
+blue        : #1db4d0
+lavender    : #bf79db
+magenta     : #f92672
+light green : #a6e22e
+*/
+
+/* Local Fonts */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/opensans/300.woff2') format('woff2'),
+       url('fonts/opensans/300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/opensans/400.woff2') format('woff2'),
+       url('fonts/opensans/400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/opensans/600.woff2') format('woff2'),
+       url('fonts/opensans/600.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/opensans/700.woff2') format('woff2'),
+       url('fonts/opensans/700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('fonts/opensans/800.woff2') format('woff2'),
+       url('fonts/opensans/800.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: url('fonts/opensans/300i.woff2') format('woff2'),
+       url('fonts/opensans/300i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/opensans/400i.woff2') format('woff2'),
+       url('fonts/opensans/400i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: url('fonts/opensans/600i.woff2') format('woff2'),
+       url('fonts/opensans/600i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('fonts/opensans/700i.woff2') format('woff2'),
+       url('fonts/opensans/700i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 800;
+  src: url('fonts/opensans/800i.woff2') format('woff2'),
+       url('fonts/opensans/800i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/merriweather/400.woff2') format('woff2'),
+       url('fonts/merriweather/400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/merriweather/700.woff2') format('woff2'),
+       url('fonts/merriweather/700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 900;
+  src: url('fonts/merriweather/900.woff2') format('woff2'),
+       url('fonts/merriweather/900.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/merriweather/400i.woff2') format('woff2'),
+       url('fonts/merriweather/400i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 700;
+  src: url('fonts/merriweather/700i.woff2') format('woff2'),
+       url('fonts/merriweather/700i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 900;
+  src: url('fonts/merriweather/900i.woff2') format('woff2'),
+       url('fonts/merriweather/900i.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/fira/400.woff2') format('woff2'),
+       url('fonts/fira/400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/fira/500.woff2') format('woff2'),
+       url('fonts/fira/500.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/fira/700.woff2') format('woff2'),
+       url('fonts/fira/700.woff') format('woff');
+}
+
+/* Theme Styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+  color: #191919;
+  background-color: #fafafa;
+}
+
+/* Custom Slide Styles */
+#slide-1 {
+  color: #fafafa;
+  background: #222 url('fade.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+#slide-1 h1 {
+  text-shadow: 1px 2px 4px #191919;
+}
+
+#slide-1 p {
+  text-shadow: 1px 1px 1px #191919;
+}
+
+.center {
+  text-align: center;
+}
+
+img.badge {
+  height: 128px;
+  width: 128px !important;
+  border-radius: 50% !important;
+}
+
+/* Presentation Styles */
+.slide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 100px;
+}
+
+.slide-content {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 200%;
+  font-weight: 200;
+  line-height: 1.375;
+  overflow: hidden;
+}
+
+.slide-content img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.arrow {
+  float: left;
+  height: 0;
+  width: 0;
+  margin-right: 15px;
+  border: 15px solid #efefef;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-right-width: 25px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-left-width: 0;
+}
+
+.next {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-right-width: 0;
+  border-bottom-color: transparent;
+  border-left-width: 25px;
+}
+
+.prev:hover {
+  border-right-color: #272822;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #272822;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  margin: 170px 0 0;
+  font-size: 300%;
+  text-align: center;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 5px 0;
+  font-size: 100%;
+  font-weight: 200;
+  text-align: center;
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0;
+  padding-bottom: 15px;
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 2px ridge #191919;
+}
+
+ul {
+  font-weight: 200;
+  line-height: 1.375;
+  padding: 20px 0 0 60px;
+}
+
+blockquote {
+  padding-left: 20px;
+  margin-left: 0;
+  background: #efefef;
+  border-left: 5px solid #272822;
+  border-radius: 0 3px 3px 0;
+}
+
+blockquote p {
+  padding: .5em;
+  color: #272822;
+}
+
+.left {
+  float: left;
+  width: 48%;
+}
+
+.right {
+  float: right;
+  width: 48%;
+}
+
+.author h1 {
+  margin-bottom: 30px;
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+}
+
+.author h3 {
+  font-size: 95%;
+  font-weight: 100;
+  text-align: center;
+  border: none;
+}
+
+.author h3.twitter::before {
+  content: 'Twitter: ';
+}
+
+.author h3.github::before {
+  content: 'Github: ';
+}
+
+.author h3.email::before {
+  content: 'Email: ';
+}
+
+.author h3.url::before {
+  content: 'Web: ';
+}
+
+a {
+  text-decoration: none;
+  color: #1db4d0;
+}
+
+a:hover {
+  color: #1db4d0;
+  border-bottom: 1px solid #1db4d0;
+}
+
+hr {
+  border: 1px solid #272822;
+}
+
+pre {
+  font-size: 75%;
+  line-height: 1.3;
+}
+
+table td,
+table th {
+  padding-right: 3em;
+  text-align: left;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  height: 3px;
+  width: 0;
+  background-color: #a6e22e;
+  -webkit-transition: width .15s ease-out;
+     -moz-transition: width .15s ease-out;
+       -o-transition: width .15s ease-out;
+          transition: width .15s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Code Highlighting */
+code {
+  padding: .1em .35em;
+  font-family: 'Fira Mono';
+  color: #fafafa;
+  background-color: #272822;
+  border-radius: 3px;
+}
+
+pre code {
+  display: block;
+  padding: .5em;
+  font-family: 'Fira Mono';
+  font-weight: 400;
+  overflow-y: hidden;
+  background: #272822;
+}
+
+pre .tag,
+pre .tag .title,
+pre .keyword,
+pre .literal,
+pre .change,
+pre .winutils,
+pre .flow,
+pre .lisp .title,
+pre .clojure .built_in,
+pre .nginx .title,
+pre .tex .special {
+  color: #f92672;
+}
+
+pre code {
+  color: #75715e;
+}
+
+pre code .constant {
+  color: #66d9ef;
+}
+
+pre .class .title {
+  color: #fafafa;
+}
+
+pre .attribute,
+pre .symbol,
+pre .symbol .string,
+pre .value,
+pre .regexp {
+  color: #bf79db;
+}
+
+pre .tag .value,
+pre .string,
+pre .subst,
+pre .title,
+pre .haskell .type,
+pre .preprocessor,
+pre .ruby .class .parent,
+pre .built_in,
+pre .sql .aggregate,
+pre .django .template_tag,
+pre .django .variable,
+pre .smalltalk .class,
+pre .javadoc,
+pre .django .filter .argument,
+pre .smalltalk .localvars,
+pre .smalltalk .array,
+pre .attr_selector,
+pre .pseudo,
+pre .addition,
+pre .stream,
+pre .envvar,
+pre .apache .tag,
+pre .apache .cbracket,
+pre .tex .command,
+pre .prompt {
+  color: #a6e22e;
+}
+
+pre .comment,
+pre .java .annotation,
+pre .python .decorator,
+pre .template_comment,
+pre .pi,
+pre .doctype,
+pre .deletion,
+pre .shebang,
+pre .apache .sqbracket,
+pre .tex .formula {
+  color: #75715e;
+}
+
+pre .keyword,
+pre .literal,
+pre .css .id,
+pre .phpdoc,
+pre .title,
+pre .haskell .type,
+pre .vbscript .built_in,
+pre .sql .aggregate,
+pre .rsl .built_in,
+pre .smalltalk .class,
+pre .diff .header,
+pre .chunk,
+pre .winutils,
+pre .bash .variable,
+pre .apache .tag,
+pre .tex .special,
+pre .request,
+pre .status {
+  /* font-weight: 600; */
+}
+
+pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .xml .css,
+pre .xml .cdata {
+  opacity: .5;
+}
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev,
+  .prev:hover {
+    border-right-color: rgba(135, 135, 135, .5);
+  }
+
+  .next,
+  .next:hover {
+    border-left-color: rgba(135, 135, 135, .5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow: hidden;
+    font-size: 50%;
+  }
+
+  .slide-content {
+    height: 340px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+  }
+
+  body {
+    float: none !important;
+    padding: 0;
+    margin: 0 auto !important;
+    overflow: visible;
+    font-size: 52%;
+    background: none !important;
+    border: 0;
+  }
+
+  .progress,
+  .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+    border: 1px solid #222;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h1 id="web-components">Web Components</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h3 id="contents">Contents</h3>
+<ul>
+<li>Web Components とは</li>
+<li>Web Components の4本柱と実践</li>
+<li>Web Components 実現のための周辺技術</li>
+<li>Web Components の現状</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h3 id="web-components-">Web Components とは</h3>
+<blockquote>
+<p>Web Components are a set of standards currently being produced by Google engineers as a W3C specification that allow for the creation of reusable widgets or components in web documents and web applications. The intention behind them is to bring component-based software engineering to the World Wide Web. The components model allows for encapsulation and interoperability of individual HTML elements.</p>
+<p>Web Components はGoogleのエンジニアによって作成されているW3C標準仕様です。これはWeb上のドキュメントやアプリケーションで再利用可能なウィジェットやコンポーネントを作成することを可能としています。これによりWorld Wide Webにコンポーネントベースの開発をもたらすことを目的としています。コンポーネントモデルは独立したHTML要素のカプセル化と相互運用性の向上をもたらします。</p>
+<p>Web Components - Wikipedia, the free encyclopedia より</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="web-components-4-">Web Components の4本柱</h3>
+<h4 id="custom-elements">Custom Elements</h4>
+<h4 id="shadow-dom">Shadow DOM</h4>
+<h4 id="html-imports">HTML Imports</h4>
+<h4 id="templates">Templates</h4>
+<p><a href="http://webcomponents.org/">http://webcomponents.org/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h1 id="custom-elements">Custom Elements</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="-dom-">独自のDOM要素を定義して使うことができる</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tel</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">submit</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">submit</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>       // バリデーションが入っている
+    <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tel</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">submit</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">submit</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>       // バリデーションが入っている
+    <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>     // 重複チェックリクエストを投げて結果を表示してくれる
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tel</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">submit</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">submit</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>       // バリデーションが入っている
+    <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>     // 重複チェックリクエストを投げて結果を表示してくれる
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span> // 郵便番号を入れることができてそこからおおよその住所が入る
+    <span class="hljs-tag">&lt;<span class="hljs-name">tel</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">submit</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">submit</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>       // バリデーションが入っている
+    <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>     // 重複チェックリクエストを投げて結果を表示してくれる
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span> // 郵便番号を入れることができてそこからおおよその住所が入る
+    <span class="hljs-tag">&lt;<span class="hljs-name">tel</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tel</span>&gt;</span>         // あとまあいろいろ
+    <span class="hljs-tag">&lt;<span class="hljs-name">submit</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">submit</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="angularjs-directive-">AngularJSのdirectiveみたいですよね</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="-web-components-custom-elements-">これが標準で実現できるのが Web Components の Custom Elements です</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="-">試してみる</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">ゴール</h4>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">ゴール</h4>
+<p>HTMLのBodyのソースはこれだけ</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">ゴール</h4>
+<div style="text-align:center;">
+  <img src="01.custom_elements.goal.gif" style="width:50%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<p>これを</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<p>こうする</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="-">いきなりゴール</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="-">順に説明していきます</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {  <span class="hljs-comment">// ココ！</span>
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>document.registerElement() を使って作ることができます。</p>
+<p>ひとつめの引数で要素のタグ名を指定します</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">要素の命名ルール</h4>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">要素の命名ルール</h4>
+<h1 id="-">- を含まなくてはならない</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">よってこれはダメです</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tel</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">submit</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">submit</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement  <span class="hljs-comment">// ココ！</span>
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>ふたつめの引数はオプションとなるオブジェクトで、要素の prototype を記述します。</p>
+<p>ここでは MyElement というオブジェクトを指定しています。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype); <span class="hljs-comment">// ココ！</span>
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>MyElement は HTMLElementを継承したオブジェクトです。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-30">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-comment">// ココ！</span>
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>要素が生成されたときに実行されるコールバック関数に初期処理を指定しています。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-31">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h4 id="-">ライフサイクルコールバック　</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createdCallback</td>
+<td>要素が生成されたときに実行されるコールバック関数</td>
+</tr>
+<tr>
+<td>attachedCallback</td>
+<td>要素がHTMLに追加されたときに実行されるコールバック関数</td>
+</tr>
+<tr>
+<td>detachedCallback</td>
+<td>HTMLから要素が除かれたときに実行されるコールバック関数</td>
+</tr>
+<tr>
+<td>attributeChangedCallback</td>
+<td>属性変更時に実行されるコールバック関数</td>
+</tr>
+</tbody>
+</table>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-32">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-element</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-element</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> MyElement = <span class="hljs-built_in">Object</span>.create(HTMLElement.prototype);
+    MyElement.createdCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-comment">// ココ！</span>
+        <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">'クリックしてね'</span>;
+        <span class="hljs-keyword">this</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            alert(<span class="hljs-string">'こんにちは Web Components!'</span>);
+        });
+    };
+    <span class="hljs-built_in">document</span>.registerElement(<span class="hljs-string">'my-element'</span>, {
+        prototype: MyElement
+    });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-33">
+    <section class="slide-content"><h3 id="custom-elements">Custom Elements</h3>
+<h1 id="-">簡単ですね</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-34">
+    <section class="slide-content"><h1 id="shadow-dom">Shadow DOM</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-35">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h1 id="dom-">DOMツリーをカプセル化できる</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-36">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h1 id="-">試してみる</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-37">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-">ゴール</h4>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-38">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-">ゴール</h4>
+<p>HTMLのBodyのソースはこれだけ</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.button</span> {
+        <span class="hljs-attribute">color</span>: blue;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>クリックしてね<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>送信<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-39">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-">ゴール</h4>
+<div style="text-align:center;">
+  <img src="01.shadow_dom.goal.png" style="width:30%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-40">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-">ゴール</h4>
+<div style="text-align:center;">
+  <img src="02.shadow_dom.goal.png" style="width:30%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-41">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-">ゴール</h4>
+<p>これを</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.button</span> {
+        <span class="hljs-attribute">color</span>: blue;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>クリックしてね<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>送信<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-42">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-">ゴール</h4>
+<p>こうする</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.button</span> {
+        <span class="hljs-attribute">color</span>: blue;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>クリックしてね<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>送信<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> host = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'form'</span>);
+    <span class="hljs-keyword">var</span> root = host.createShadowRoot();
+    root.innerHTML = <span class="hljs-string">'&lt;button type="submit" class="button"&gt;送信&lt;/button&gt;'</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-43">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h1 id="-">いきなりゴール</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-44">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h1 id="-">さらっと説明します</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-45">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.button</span> {
+        <span class="hljs-attribute">color</span>: blue;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>クリックしてね<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>送信<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> host = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'form'</span>);
+    <span class="hljs-keyword">var</span> root = host.createShadowRoot();
+    root.innerHTML = <span class="hljs-string">'&lt;button type="submit" class="button"&gt;送信&lt;/button&gt;'</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>Shadow DOM を使うことで、要素は、Shadow Root と呼ばれる、新しい種類のノードを関連付けることができます。
+Shadow Root が関連付けられた要素は、Shadow Host と呼ばれます。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-46">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.button</span> {
+        <span class="hljs-attribute">color</span>: blue;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>クリックしてね<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> host = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'form'</span>);
+    <span class="hljs-keyword">var</span> root = host.createShadowRoot();
+    root.innerHTML = <span class="hljs-string">'&lt;button type="submit" class="button"&gt;送信&lt;/button&gt;'</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>これ無しで動きます。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-47">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<p>Shadow Host配下のDOMはそれを内包する親からは別のDOMツリーとして存在しています。</p>
+<p>よってstyleに記述した内容が適用されていません。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-48">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h1 id="-iframe-">それなんていう iframe ？</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-49">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h1 id="-">否！</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-50">
+    <section class="slide-content"><h3 id="shadow-dom">Shadow DOM</h3>
+<h4 id="-iframe-">特徴的なiframeとの違い</h4>
+<ul>
+<li>HTTPリクエストが発生しない</li>
+<li>サブツリーと親ツリーとのメッセージのやりとりをするAPIが存在する</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-51">
+    <section class="slide-content"><h1 id="templates">Templates</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-52">
+    <section class="slide-content"><h3 id="templates">Templates</h3>
+<h1 id="html-">HTMLのテンプレート機能をブラウザネイティブに利用可能にする</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-53">
+    <section class="slide-content"><h3 id="templates">Templates</h3>
+<pre><code class="lang-html">
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>HTML Templates<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"hello()"</span>&gt;</span>クリックしてね<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"hello_message"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">alert(<span class="hljs-string">'こんにちは Web Components'</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>clicked !<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> template = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#hello_message'</span>);
+        <span class="hljs-keyword">var</span> clone = <span class="hljs-built_in">document</span>.importNode(template.content, <span class="hljs-literal">true</span>);
+        <span class="hljs-built_in">document</span>.body.appendChild(clone);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-54">
+    <section class="slide-content"><h3 id="templates">Templates</h3>
+<h1 id="-">実演</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-55">
+    <section class="slide-content"><h1 id="html-imports">HTML Imports</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-56">
+    <section class="slide-content"><h3 id="html-imports">HTML Imports</h3>
+<h1 id="-html-">別ファイルとしたHTMLを取得できる</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-57">
+    <section class="slide-content"><h3 id="html-imports">HTML Imports</h3>
+<pre><code class="lang-html">// parent.html
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>HTML Imports Parent<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"import"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"import_common.html"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>HTML Imports<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content"</span>&gt;</span>content<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">var</span> link = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'link[rel="import"]'</span>);
+    <span class="hljs-keyword">var</span> common = link.import;
+
+    <span class="hljs-keyword">var</span> header = common.querySelector(<span class="hljs-string">'#header'</span>);
+    <span class="hljs-keyword">var</span> footer = common.querySelector(<span class="hljs-string">'#footer'</span>);
+    <span class="hljs-keyword">var</span> content = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#content'</span>);
+
+    content.insertBefore(header.cloneNode(<span class="hljs-literal">true</span>), content.firstChild);
+    <span class="hljs-built_in">document</span>.body.appendChild(footer.cloneNode(<span class="hljs-literal">true</span>));
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<pre><code class="lang-html">// import_common.html
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"header"</span>&gt;</span>this is header<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"footer"</span>&gt;</span>this is footer<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">alert(<span class="hljs-string">'child!'</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-58">
+    <section class="slide-content"><h3 id="html-imports">HTML Imports</h3>
+<h1 id="-">実演</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-59">
+    <section class="slide-content"><h1 id="web-components-">Web Components 実現のための周辺技術</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-60">
+    <section class="slide-content"><h3 id="web-components-">Web Components 実現のための周辺技術</h3>
+<h4 id="polyfills">Polyfills</h4>
+<ul>
+<li>webcomponent.js</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-61">
+    <section class="slide-content"><h3 id="webcomponent-js">webcomponent.js</h3>
+<p>未対応のブラウザで使用することで Web Components を実装できる</p>
+<p><a href="https://github.com/webcomponents/webcomponentsjs">https://github.com/webcomponents/webcomponentsjs</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-62">
+    <section class="slide-content"><h3 id="web-components-">Web Components 実現のための周辺技術</h3>
+<h4 id="libraries">Libraries</h4>
+<ul>
+<li>Polymer</li>
+<li>X-Tag</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-63">
+    <section class="slide-content"><h3 id="polymer">Polymer</h3>
+<p>Google製のライブラリ。webcomponents.jsのサブセット。</p>
+<p>Web Componentsの実装に便利なフレームワーク的立ち位置。</p>
+<p><a href="https://www.polymer-project.org/1.0/">https://www.polymer-project.org/1.0/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-64">
+    <section class="slide-content"><h3 id="x-tag">X-Tag</h3>
+<p>Mozilla製のライブラリ（Microsoftがサポート？）。webcomponents.jsのサブセット。</p>
+<p>Custome Elementsの実装にフォーカスしたライブラリ。</p>
+<p><a href="http://x-tag.github.io/">http://x-tag.github.io/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-65">
+    <section class="slide-content"><h1 id="-">現状とこれから</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-66">
+    <section class="slide-content"><h3 id="-">ブラウザサポート</h3>
+<p>　</p>
+<div style="text-align:center;">
+  <img src="01.browser_support.png" style="width:50%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-67">
+    <section class="slide-content"><h3 id="-">ブラウザサポート</h3>
+<p>　</p>
+<div style="text-align:center;">
+  <img src="02.browser_support.png" style="width:50%">
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-68">
+    <section class="slide-content"><h3 id="w3c-">W3C標準</h3>
+<p>　</p>
+<div style="text-align:center;">
+ <a href="https://www.w3.org/standards/techs/components#w3c_all"><img src="WebComponentsCurrentStatusW3C.png" style="width:70%"></a>
+</div></section>
+  </div>
+  <div class="slide hidden" id="slide-69">
+    <section class="slide-content"><h3 id="-">実装例</h3>
+<ul>
+<li><a href="https://customelements.io/">CustomElements.io · Explore the world of Web Components</a></li>
+<li><a href="https://github.com/atom/electron/issues/950">new project using atom-shell and webcomponents · Issue #950 · atom/electron</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2015/12/20/000000">Web Components と Electron でつくる Neovim フロントエンドの未来 - sorry, uninuplemented:</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-70">
+    <section class="slide-content"><h3 id="-">雑感</h3>
+<p>Templates はすでに<a href="https://www.w3.org/TR/html5/scripting-1.html#the-template-element">Web標準となっています</a>。 がその他はまだ標準仕様とはなっていません。</p>
+<p>ブラウザベンダの実装にばらつきがありMozillaはHTML importsを実装しない方向だという話もあるようです。</p>
+<p>いっぽうブラウザベンダに影響されないネイティブアプリにはElectronを前提とした実装が見受けられて面白いです。</p>
+<p>「コンポーネント化」という基本ポリシーは合意を得られているようなのでこのまま注目していきたいです。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-71">
+    <section class="slide-content"><h3 id="-">デモ</h3>
+<ul>
+<li><a href="demos/custom_element.html">Custom Elements</a></li>
+<li><a href="demos/shadow_dom.html">Shadow DOM</a></li>
+<li><a href="demos/template.html">Template</a></li>
+<li><a href="demos/import_parent.html">HTML Imports</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-72">
+    <section class="slide-content"><h1 id="-">ありがとうございました</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-73">
+    <section class="slide-content"><div class="author">
+  <h1 class="name">真鍋直泰</h1>
+    <h3 class="url">
+      <a href="https://github.com/naoyes">https://github.com/naoyes</a>
+    </h3>
+</div>
+</section>
+  </div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /* Returns the current page number of the presentation */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+/* Navigates forward n pages (navigate in reverse if n is negative) */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/* Updates the current URL to include a hashtag of the current page number */
+function updateURL() {
+  window.location.hash = currentPosition();
+}
+
+/* Sets the progress indicator */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/* Determines whether or not we are currently in full screen mode */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+  </script>
+</body>
+</html>

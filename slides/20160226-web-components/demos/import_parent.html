@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>HTML Imports Parent</title>
+    <link rel="import" href="import_common.html">
+</head>
+<body>
+<h1>HTML Imports</h1>
+<div id="content">content</div>
+</body>
+<script>
+    var link = document.querySelector('link[rel="import"]');
+    var common = link.import;
+
+    var header = common.querySelector('#header');
+    var footer = common.querySelector('#footer');
+    var content = document.querySelector('#content');
+
+    content.insertBefore(header.cloneNode(true), content.firstChild);
+    document.body.appendChild(footer.cloneNode(true));
+</script>
+</html>

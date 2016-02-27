@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Custom Elements</title>
+</head>
+<body>
+    <h1>Custom Elements</h1>
+    <my-element></my-element>
+</body>
+<script type="text/javascript">
+    var MyElement = Object.create(HTMLButtonElement.prototype);
+    MyElement.createdCallback = function() {
+        this.innerHTML = 'クリックしてね';
+        this.addEventListener('click', function (e) {
+            alert('こんにちは Web Components!');
+        });
+    };
+    document.registerElement('my-element', {
+        prototype: MyElement
+    });
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Shadow DOM</title>
+</head>
+<body>
+<h1>Shadow DOM</h1>
+<style>
+    .button {
+        color: blue;
+    }
+</style>
+<button type="button" class="button">クリックしてね</button>
+<form>
+    <button type="submit" class="button">送信</button>
+</form>
+</body>
+<script type="text/javascript">
+    var host = document.querySelector('form');
+    var root = host.createShadowRoot();
+    root.innerHTML = '<button type="submit" class="button">送信</button>';
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Template</title>
+</head>
+<body>
+<h1>HTML Templates</h1>
+<button onclick="hello()">クリックしてね</button>
+<template id="hello_message">
+    <script>alert('こんにちは Web Components');</script>
+    <div>clicked !</div>
+</template>
+</body>
+<script type="text/javascript">
+    function hello() {
+        var template = document.querySelector('#hello_message');
+        var clone = document.importNode(template.content, true);
+        document.body.appendChild(clone);
+    }
+</script>
+</html>
